@@ -114,4 +114,7 @@ https://www.jma.go.jp/jma/kishou/books/npdc/r03/npdc_annual_report_r03_4-01.pdf
 # HEALPixの場合
 （[Górski et al., 2005](https://doi.org/10.1086/427976)；需要ありそうなら）
 
+# デモ
+https://nihsok.github.io/wave-truncation/
+
 *※実際の計算では、どの格子でも解像される最小波長は格子間隔の数倍程度となる*

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+  <title>grid calculation</title>
+  <script src="./calculation.js"></script>
+  <link href="./style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="method" id="sg">
+    <h1>Spectral Grid</h1>
+    <form>
+      <select name="cuttype" id="cuttype" onchange="spectrum_wn2grid()">
+        <option selected>T</option>
+        <option>TL</option>
+        <option>TQ</option>
+        <option>R</option>
+      </select>
+      <input type="number" id="s_wn" min="1" placeholder=">0" oninput="spectrum_wn2grid()"/> =
+      <input type="number" id="s_ngrid" oninput="spectrum_grid2wn()"/> zonal grid points
+    </form>
+    <table>
+      <tr><th>N<sub>T</sub></th><th>N<sub>TL</sub></th><th>I</th><th>J</th><th>&Delta;x[&deg;]</th><th>&Delta;x@EQ [km]</th><th>&Delta;x@30&deg; [km]</th><th>&Delta;x@60&deg; [km]</th></tr>
+      <tr id="s_output"><td> </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="method" id="cs">
+    <h1>Cubed Sphere Grid</h1>
+    <form>
+      NE: 
+      <input type="number" id="ne" min="1" placeholder=">0" oninput="cubed_sphere()"/>
+    </form>
+    <table>
+      <tr>
+        <th>NE</th>
+        <th>L<sub>min</sub>[km]</th><th>&Delta;&theta;<sub>min</sub>[&deg;]</th>
+        <th>L<sub>max</sub>[km]</th><th>&Delta;&theta;<sub>max</sub>[&deg;]</th>
+        <th>L<sub>ave</sub>[km]</th><th>&Delta;&theta;<sub>ave</sub>[&deg;]</th><th>A<sub>ave</sub>[km<sup>2</sup>]</th>
+      </tr>
+      <tr id="c_output">
+        <td></td>
+        <td></td><td></td>
+        <td></td><td></td>
+        <td></td><td></td><td></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="method" id="ig">
+    <h1>Icosahedral Grid</h1>
+    <form>
+      glevel: 
+      <input type="number" id="gl" min="1" placeholder="&ge;0" oninput="icosahedral()"/>
+    </form>
+    <table>
+      <tr>
+        <th>glevel</th><th>devision</th><th>N<sub>c</sub></th>
+        <th>L<sub>eq</sub>[km]</th><th>L<sub>min</sub>[km]</th>
+        <th>L<sub>ave</sub>[km]</th><th>&Delta;&theta;<sub>ave</sub>[&deg;]</th><th>A<sub>ave</sub>[km<sup>2</sup>]</th>
+      </tr>
+      <tr id="i_output">
+        <td></td><td></td><td></td>
+        <td></td><td></td>
+        <td></td><td></td><td></td>
+      </tr>
+    </table>
+  </div>
+
+  <a href link="../README.md">Read the description</a>
+</body>
+</html>

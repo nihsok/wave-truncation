@@ -1,0 +1,36 @@
+h1 {
+  font-size:x-large;
+  margin:0;
+}
+table {
+  width:100%;
+  margin: 5px 0px;
+  overflow: auto;
+  border-collapse: collapse;
+}
+th {
+  border: 1px solid gray;
+  font-weight: normal;
+}
+td {
+  text-align: right;
+  min-width: 3em;
+  height: 1.5em;
+  border: 1px solid gray;
+}
+.method {
+  font-size:larger;
+  margin: 10px 5px;
+  padding: 5px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+#sg {
+  background-color: rgb(221, 245, 245);
+}
+#cs {
+  background-color:rgb(221, 248, 238)
+}
+#ig {
+  background-color: rgb(250, 236, 219);
+}

@@ -12,8 +12,8 @@
 1. 波数切断方法を選択（三角形切断T or 平行四辺形切断R）
 2. FFTのかけやすい東西格子点数を選ぶ → $I$
 3. 東西波数の最大値を決める
-    1. 非線形モデルの場合、$M=[\frac{I-1}{3}]$
-    2. 線形モデルの場合、$M=[\frac{I}{2}]$、ただし [ ] はそれを超えない最大の整数
+    1. 非線形モデルの場合 $M=[\frac{I-1}{3}]$
+    2. 線形モデルの場合 $M=[\frac{I}{2}]$ ただし [ ] はそれを超えない最大の整数
 4. 最大全波数Nを決める
     1. 三角形切断なら $N=M$
     2. 平行四辺形切断なら $N=2M$
@@ -56,15 +56,15 @@ https://www.jma.go.jp/jma/kishou/books/npdc/r03/npdc_annual_report_r03_4-01.pdf
 
 さらに、それぞれのセルごとに基底関数を用いて離散化を行う。CESM/CAM-SEでは3次のGaussian quadrature（求積点は 4x4: np4）が使われる。グリッド配置は等間隔ではないが重み付けなので、ここでは単純に3分割されていると考える（近似）
 
-- 格子点間隔が最も大きいのは赤道等の大円を分割するときで、$L_{max}=2\pi a/(4NE\times3)$
+- 格子点間隔が最も大きいのは赤道等の大円を分割するときで $L_{max}=2\pi a/(4NE\times3)$
 
-- 格子点間隔が最も小さいのは六面体の各辺を分割するときで、この辺は$\cos\theta$=1/3なる角（約70.5度）をなすので、$L_{min}=a\cos^{-1}(1/3)/(NE\times3)$
+- 格子点間隔が最も小さいのは六面体の各辺を分割するときで、この辺は $\cos\theta=1/3$ なる角（約70.5度）をなすので $L_{min}=a\cos^{-1}(1/3)/(NE\times3)$
 
-- 格子間隔を一様にするための修正が行われている場合、求積点の数=分割後のセルの数=$6\times9NE^2$
-    - 求積点ひとつあたりが代表する平均的な面積は表面積を割り$A_{ave}=\frac{4\pi a^2}{54NE^2}$
-    - これと等価なグリッドの長さをその平方根 $L_{ave}=\frac{2a}{3NE}\sqrt\frac{\pi}{6}$
+- 格子間隔を一様にするための修正が行われている場合、求積点の数=分割後のセルの数 $=6\times9NE^2$
+    - 求積点ひとつあたりが代表する平均的な面積は表面積を割り $A_{ave}=\frac{4\pi a^2}{54NE^2}$
+    - これと等価なグリッドの長さはその平方根 $L_{ave}=\frac{2a}{3NE}\sqrt\frac{\pi}{6}$
 
-それぞれの格子間隔は角度で表すこともできる（必ずしも経緯線と並行ではない）。$\Delta\theta=360^\circ\times L/2\pi a$
+それぞれの格子間隔は角度で表すこともできる（必ずしも経緯線と並行ではない）。 $\Delta\theta=360^\circ\times L/2\pi a$
 
 ## 主要な分割数における格子間隔の例
 
@@ -77,7 +77,7 @@ https://www.jma.go.jp/jma/kishou/books/npdc/r03/npdc_annual_report_r03_4-01.pdf
 |ne240np4|10.9km|0.1&deg;|13.9km|0.13&deg;|12.8km|0.12&deg;|164.3km<sup>2</sup>|
 |n|$\frac{a}{3n}\cos^{-1}(\frac{1}{3})$|$\frac{60}{n\pi}\cos^{-1}(\frac{1}{3})$|$\frac{2\pi a}{12n}$|$\frac{30}{n}$|$\frac{2a}{3n}\sqrt{\frac{\pi}{6}}$|$\frac{20}{n}\sqrt{\frac{6}{\pi}}$|$\frac{2\pi a^2}{27n^2}$|
 
-（Lauritzen et al., 2018 では$L_{max}$に対応する値が示されていると思われる）
+（Lauritzen et al., 2018 では $L_{max}$ に対応する値が示されていると思われる）
 
 # 正二十面体 (Icosahedral) 格子の場合
 解像度は grid level ([Stuhne and Peltier, 1999](https://doi.org/10.1006/jcph.1998.6119)) あるいは grid division level (glevel; [Sato et al., 2008](https://doi.org/10.1016/j.jcp.2007.02.006)) で定義される。（この定義は [Thuburn (1997)](https://doi.org/10.1175/1520-0493(1997)125%3C2328:APBSWM%3E2.0.CO;2) とはひとつずれている）
@@ -85,9 +85,9 @@ https://www.jma.go.jp/jma/kishou/books/npdc/r03/npdc_annual_report_r03_4-01.pdf
 - glevelひとつ増加ごとに各面の三角形を四分割するので、glevel-nのとき三角形の頂点の数（＝五角形or六角形のコントロールボリュームの数）は $N_c=10\times2^{2n}+2$
 
 格子間隔は、
-- 単純に赤道で考えると、glevel-nのとき$10\times2^{n-1}$個に分割されるので $L_{eq}=\frac{2\pi a}{10\times2^{n-1}}$
+- 単純に赤道で考えると、glevel-nのとき $10\times2^{n-1}$ 個に分割されるので $L_{eq}=\frac{2\pi a}{10\times2^{n-1}}$
 （[Tomita et al., 2002](https://doi.org/10.1006/jcph.2002.7193); [Miura and Kimoto, 2005](https://doi.org/10.1175/MWR2991.1) の方法）
-- 正二十面体の辺に沿った分割を考えると、中心角は$\cos\theta=1/\sqrt{5}$となる角であることから$L_{min}=a \cos^{-1}(\frac{1}{\sqrt{5}})/2^n$
+- 正二十面体の辺に沿った分割を考えると、中心角は $\cos\theta=1/\sqrt{5}$ となる角であることから $L_{min}=a \cos^{-1}(\frac{1}{\sqrt{5}})/2^n$
 - 格子間隔が一様なら、
     - コントロールボリュームの平均的な面積 $A_{ave}=\frac{4\pi a^2}{N_c}$
     - 対応する長さスケールはその平方根 $L_{ave}=\sqrt\frac{4\pi a^2}{N_c}$

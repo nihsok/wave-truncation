@@ -1,6 +1,7 @@
 const part = (value,base) => value%base ? value : part(value/base,base)
 const r_earth = 6371.22
 const eq_len = 2*Math.PI*r_earth
+
 function spectrum_wn2grid(){
   const type = document.getElementById('cuttype').value;
   const wn = parseInt(document.getElementById('s_wn').value);
@@ -16,14 +17,9 @@ function spectrum_wn2grid(){
       i = 2*n_TL+1
       j = Math.ceil(i/2)
       break;
-    case "TQ":
-      n_TL = wn*3/2
-      n_T = Math.round(n_TL*2/3)
-      i = 2*n_TL+1
-      j = i
-      break;
-    case "T":
     case "R":
+      i = Math.ceil(3*n_T/2+1)
+      j = Math.ceil((3*n_T+1)/2)
       break;
   }
   while(part(part(part(i,2),3),5) !== 1) i++
@@ -45,28 +41,26 @@ function spectrum_grid2wn(){
   const grid = parseInt(document.getElementById('s_ngrid').value);
 
   const n_T = Math.floor((grid-1)/3)
-  const n_TL = Math.round(n_T*3/2)
+  const n_TL = Math.floor((grid-1)/2)
   let wn = n_T
+  let j = Math.ceil((3*wn+1)/2)
   switch(type){
-    case "T":
-      break;
     case "TL":
-      wn = n_T*3/2
-      break;
-    case "TQ":
-      wn = n_T*3*3/2/2
+      wn = n_TL
+      j = Math.ceil((2*wn+1)/2)
       break;
     case "R":
       wn = 2*n_T
+      j = Math.ceil((3*wn+1)/2)
       break;
   }
+  if(j%2 !== 0) j++
   document.getElementById('s_wn').value = Math.floor(wn);
   const row = document.getElementById('s_output')
   row.cells[0].innerHTML = n_T
   row.cells[1].innerHTML = n_TL
   row.cells[2].innerHTML = grid
-  const j = Math.ceil((3*grid+1)/2)
-  row.cells[3].innerHTML = j%2==0 ? j : j+1
+  row.cells[3].innerHTML = j
   row.cells[4].innerHTML = (360/grid).toFixed(3)
   row.cells[5].innerHTML = (eq_len/grid).toFixed(1)
   row.cells[6].innerHTML = (eq_len*Math.cos(30*Math.PI/180)/grid).toFixed(1)

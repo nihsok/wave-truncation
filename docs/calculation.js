@@ -100,3 +100,22 @@ function icosahedral(){
   row.cells[6].innerHTML = (360/Math.sqrt(nc*Math.PI)).toFixed(1)
   row.cells[7].innerHTML = (4*Math.PI*r_earth**2/nc).toFixed(1)
 }
+
+function healpix(){
+  const theta = parseFloat(document.getElementById('hp_theta').value);
+  const phi = parseFloat(document.getElementById('hp_phi').value);
+  const k = parseFloat(document.getElementById('hp_k').value);
+  if(!(k>=0)) return
+  const side = 2**k
+
+  const row = document.getElementById('h_output')
+  row.cells[0].innerHTML = theta
+  row.cells[1].innerHTML = phi
+  row.cells[2].innerHTML = k
+  row.cells[3].innerHTML = side
+  row.cells[4].innerHTML = theta*phi*side*side
+  row.cells[5].innerHTML = (eq_len/(phi*side)).toFixed(1)
+  row.cells[6].innerHTML = (2*r_earth*Math.sqrt(Math.PI/(theta*phi))/side).toFixed(1)
+  row.cells[7].innerHTML = (360/side/Math.sqrt(theta*phi*Math.PI)).toFixed(2)
+  row.cells[8].innerHTML = (4*Math.PI*r_earth**2/(theta*phi*side**2)).toFixed(1)
+}

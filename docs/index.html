@@ -64,6 +64,55 @@
     </table>
   </div>
 
+  <div class="method" id="hp">
+    <h1>HEALPix</h1>
+    <form>
+      N<sub>&theta;</sub>: 
+      <select id="hp_theta" oninput="healpix()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3" selected>3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      N<sub>&varphi;</sub>: 
+      <select id="hp_phi" oninput="healpix()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4" selected>4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+      N<sub>side</sub>= 2^
+      <input type="number" id="hp_k" min="0" placeholder="&ge;0" oninput="healpix()"/>
+    </form>
+    <table>
+      <tr>
+        <th>N<sub>&theta;</sub></th>
+        <th>N<sub>&varphi;</sub></th>
+        <th>k</th>
+        <th>N<sub>side</sub></th>
+        <th>pixel</th>
+        <th>L<sub>eq</sub>[km]</th>
+        <th>L<sub>ave</sub>[km]</th>
+        <th>&Delta;&theta;<sub>ave</sub>[&deg;]</th>
+        <th>A<sub>ave</sub>[km<sup>2</sup>]</th>
+      </tr>
+      <tr id="h_output">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+
   <a href="https://github.com/nihsok/wave-truncation/blob/main/README.md">Readme at GitHub repository</a>
 </body>
 </html>
